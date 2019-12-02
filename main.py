@@ -1,4 +1,4 @@
-def most_common_path(log):
+def most_common_path(log, path_length=3, path_separator="->"):
     max_mcp = 0
     paths = {}
     mcps = {}
@@ -14,16 +14,14 @@ def most_common_path(log):
             paths[user_id] = path
         else:
             path = paths[user_id]
-            if len(path) == 3:
+            if len(path) == path_length:
                 path = path[1:]
-                path.append(state)
-            else:
-                path.append(state)
 
+            path.append(state)
             paths[user_id] = path
 
-            if len(path) == 3:
-                path_str = "->".join(path)
+            if len(path) == path_length:
+                path_str = path_separator.join(path)
                 if path_str not in mcps:
                     mcps[path_str] = 1
                 else:
@@ -53,6 +51,7 @@ def main():
     else:
         for mcp in common_paths:
             print(mcp)
+
 
 if __name__ == "__main__":
     main()
