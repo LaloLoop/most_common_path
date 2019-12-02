@@ -38,3 +38,15 @@ command:
 python -m unittest
 ```
 
+##Improvements
+
+There are some edge cases that are not considered:
+
+1. What happens if a user can somehow edit the path and add a new state in between (not an append only log)?
+2. What happens if the user id or state id change to something other than number and letters? The current implementation 
+may not be the best option memory wise.
+
+## Another implementation
+
+Another implementation could be achieved with a different data structure, like a weighted graph and the traversal on the
+graph could help find out the different common paths.
